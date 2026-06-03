@@ -36,6 +36,7 @@ export default function Nav() {
   const textLight = overHero && !scrolled;
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         solid
@@ -87,7 +88,7 @@ export default function Nav() {
         <button
           aria-label="Open menu"
           onClick={() => setOpen((v) => !v)}
-          className={`relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden`}
+          className={`relative z-[60] flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden`}
         >
           <span
             className={`h-px w-6 transition-all duration-300 ${
@@ -106,8 +107,12 @@ export default function Nav() {
           />
         </button>
       </nav>
+      </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered OUTSIDE <header> so the header's backdrop-blur
+          (which becomes a containing block for fixed descendants) cannot clip
+          this panel. The fixed inset-0 now resolves against the viewport, so
+          its solid background covers the full screen. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -115,9 +120,9 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-40 flex flex-col bg-bone px-6 pt-28 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-[#F4F1EC] px-6 pt-28 md:hidden"
           >
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-7">
               {nav.map((item, i) => (
                 <motion.li
                   key={item.href}
@@ -146,6 +151,6 @@ export default function Nav() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

@@ -17,14 +17,14 @@ export default function CollectionsGrid() {
   return (
     <div>
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-x-8 gap-y-4 border-y border-rule py-6">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         {collectionCategories.map((cat) => {
           const isActive = active === cat;
           return (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className="relative font-body text-[12px] uppercase tracking-[0.18em] transition-colors duration-300"
+              className="relative pb-2 font-body text-[12px] uppercase tracking-[0.18em] no-underline transition-colors duration-300"
             >
               <span
                 className={isActive ? "text-ink" : "text-ink/40 hover:text-ink/70"}
@@ -34,13 +34,16 @@ export default function CollectionsGrid() {
               {isActive && (
                 <motion.span
                   layoutId="filter-underline"
-                  className="absolute -bottom-[25px] left-0 h-px w-full bg-clay"
+                  className="absolute bottom-0 left-0 h-px w-full bg-clay"
                 />
               )}
             </button>
           );
         })}
       </div>
+
+      {/* Divider — sits clearly below the (possibly wrapped) filter row */}
+      <div className="mt-5 border-t border-rule" />
 
       {/* Grid */}
       <LayoutGroup>
