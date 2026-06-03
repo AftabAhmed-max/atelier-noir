@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bone: #f4f1ec;
+  --ink: #1a1a1a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #a8624a;
+  color: #f4f1ec;
+}
+
+/* Slim, restrained scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f1ec;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbbfb0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8a99a;
+}
+
+@layer components {
+  /* Editorial section padding */
+  .section {
+    @apply px-6 py-24 md:px-10 md:py-32 lg:px-16;
+  }
+  .container-editorial {
+    @apply mx-auto w-full max-w-editorial;
+  }
+  /* Tracked-out label / eyebrow */
+  .eyebrow {
+    @apply font-body text-[11px] uppercase tracking-widest text-clay;
+  }
+  /* Thin animated underline link */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-current transition-all duration-500 ease-out;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
