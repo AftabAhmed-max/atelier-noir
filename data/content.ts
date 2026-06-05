@@ -376,3 +376,4 @@ export const contact = {
   heading: "Let us begin a conversation.",
   body: "Whether it is a single commissioned piece or an entire residence, we would be glad to hear what you have in mind. Tell us a little about the space and we will be in touch shortly.",
 };
+
